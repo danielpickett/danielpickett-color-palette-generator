@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.0.4/chroma.min.js" integrity="sha256-r2i+bPjselDztQN4Z4P9MvibdQaw/AVKp37mJx9BeZo=" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <title>Color Palette Generator</title>
+</head>
+<body>
+  <form class="my-form" onsubmit="handleSubmit(event)">
+    <div>
+      <label for="startColor">Start Color</label>
+      <input name="startColor" type="text" value="#0000ff">
+    </div>
+    <div>
+      <label for="endColor">End Color</label>
+      <input name="endColor" type="text" value="#000000">
+    </div>
+    <div>
+        <label for="stepCount">End Color</label>
+        <input name="stepCount" type="number" value="10">
+      </div>
+    <div>
+      <input type="submit">
+    </div>
+  </form>
+  <div class="swatches-output"></div>
+</body>
+</html>
