@@ -1,0 +1,18 @@
+.color-picker-app {
+  margin: 20px;
+}
+
+body {
+  display: flex;
+}
+
+.color-pickers-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.swatches-output {
+  flex-grow: 1;
+}
