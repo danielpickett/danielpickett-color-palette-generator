@@ -36,7 +36,7 @@ function makeScale(start, middle, end) {
 
 function renderScale(scale){
   var output = scale.map((result, i) => {
-    return `<div style="background-color: ${result};"><span>$greyScale${(i < 9 ? ('0' + (i+1)) : (i + 1))}: ${result}</span></div>`
+    return `<div style="background-color: ${result};"><span>$greyScale${(i < 9 ? ('0' + (i+1)) : (i + 1))}: ${result};</span></div>`
   }).join('')
   document.querySelector('.swatches-output').innerHTML = output;
 }
