@@ -1,53 +1,42 @@
-// import pickrConfig from "./pickrConfig.js";
+import pickrConfig from "./pickrConfig.js";
 
-const pickrConfig = {
-  theme: 'classic', // 'classic', or 'monolith', or 'nano'
-  inline: true,
-  useAsButton: true,
-  appClass: "color-picker-app",
-  showAlways: true,
-  components: {
-    hue: true,
-    interaction: {
-      hex: true,
-      rgba: true,
-      hsla: true,
-      hsva: true,
-      input: true,
-      clear: true,
-      save: true
-    }
-  }
-};
-
-let colorStart = '#F5F8FA';
+let colorStart = '#f8fafc';
+let colorMiddle = '#d5dadd'
 let colorEnd = '#152633';
 
 let colorScale;
 
 const pickrStart = Pickr.create({el: '.color-start', default: colorStart, ...pickrConfig});
+const pickrMiddle = Pickr.create({el: '.color-middle', default: colorMiddle, ...pickrConfig});
 const pickrEnd = Pickr.create({el: '.color-end', default: colorEnd, ...pickrConfig});
 
 pickrStart.on('change', (color) => {
   colorStart = color.toHEXA().toString();
-  makeScale(colorStart, colorEnd)
+  makeScale(colorStart, colorMiddle, colorEnd)
+})
+
+pickrMiddle.on('change', (color) => {
+  colorMiddle = color.toHEXA().toString();
+  makeScale(colorStart, colorMiddle, colorEnd)
 })
 
 pickrEnd.on('change', (color) => {
   colorEnd = color.toHEXA().toString();
-  makeScale(colorStart, colorEnd)
+  makeScale(colorStart, colorMiddle, colorEnd)
 })
 
-makeScale(colorStart, colorEnd)
+makeScale(colorStart, colorMiddle, colorEnd)
 
-function makeScale(start, end) {
-  let scale = chroma.scale([start,end]).correctLightness().mode('lch').colors(20)
+function makeScale(start, middle, end) {
+  let scale
+  scale = chroma.scale([start, middle, end]).domain([0, 0.25, 1]).colors(20)
+  scale = chroma.bezier([start, middle, end]).scale().domain([0, 0.25, 1]).colors(20)
   renderScale(scale)
 }
 
 function renderScale(scale){
-  var output = scale.map(result => {
-    return `<div style="background-color: ${result}; height: 2em"></div>`
+  var output = scale.map((result, i) => {
+    return `<div style="background-color: ${result};"><span>$greyScale${(i < 9 ? ('0' + (i+1)) : (i + 1))}: ${result}</span></div>`
   }).join('')
   document.querySelector('.swatches-output').innerHTML = output;
 }

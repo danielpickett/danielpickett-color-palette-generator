@@ -1,7 +1,8 @@
 const pickrConfig = {
-  theme: 'classic', // 'classic', or 'monolith', or 'nano'
+  theme: 'monolith', // 'classic', or 'monolith', or 'nano'
   inline: true,
   useAsButton: true,
+  showAlways: true,
   appClass: "color-picker-app",
   components: {
     hue: true,

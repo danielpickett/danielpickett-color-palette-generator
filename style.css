@@ -1,9 +1,10 @@
-.color-picker-app {
-  margin: 20px;
-}
-
 body {
   display: flex;
+  font-family: monospace;
+}
+
+.color-picker-app {
+  margin: 0px;
 }
 
 .color-pickers-container {
@@ -15,4 +16,10 @@ body {
 
 .swatches-output {
   flex-grow: 1;
+}
+
+.swatches-output span {
+  display: inline-block;
+  padding: 1em;
+  background-color: white;
 }
